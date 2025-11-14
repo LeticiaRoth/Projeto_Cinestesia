@@ -1,0 +1,22 @@
+.botaoEntrar {
+  width: 100%;
+  padding: 1rem;
+  background-color: #AECBFA;
+  border: none;
+  border-radius: 4px;
+  color: #0a0a2a;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.botaoEntrar:hover {
+  background-color: #c8d8fa;
+}
+
+.botaoEntrar:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
