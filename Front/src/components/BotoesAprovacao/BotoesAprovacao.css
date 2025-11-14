@@ -1,42 +1,42 @@
 .botoesContainer {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-  justify-content: center;
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .botao.aprovacao {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 150px;
-  color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 150px;
+    color: white;
 }
 
 .botao.aprovacao:disabled {
-  background-color: #999;
-  cursor: not-allowed;
-  transform: none;
+    background-color: #999;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .botao.aprovacao.aceitar {
-  background-color: #5cb85c;
+    background-color: #5cb85c;
 }
 
 .botao.aprovacao.aceitar:hover:not(:disabled) {
-  background-color: #4cae4c;
-  transform: translateY(-2px);
+    background-color: #4cae4c;
+    transform: translateY(-2px);
 }
 
 .botao.aprovacao.recusar {
-  background-color: #d9534f;
+    background-color: #d9534f;
 }
 
 .botao.aprovacao.recusar:hover:not(:disabled) {
-  background-color: #c9302c;
-  transform: translateY(-2px);
+    background-color: #c9302c;
+    transform: translateY(-2px);
 }

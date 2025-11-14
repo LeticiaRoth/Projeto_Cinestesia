@@ -1,133 +1,133 @@
 .paginaVerFilmes {
-  padding-bottom: 2rem;
-  background-color: #04041a;
+    padding-bottom: 2rem;
+    background-color: #04041a;
 }
 
 .containerPagina {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .botaoVoltar {
-  display: inline-block;
-  background-color: white;
-  color: #0a0a2a;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.8rem;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+    display: inline-block;
+    background-color: white;
+    color: #0a0a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .botaoVoltar:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 .barraFiltros {
-  background-color: #3b5998;
-  padding: 1.5rem 2rem;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+    background-color: #3b5998;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 .containerFiltrosInterno {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .dropdownFiltro {
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 4px;
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  background-color: #0a0a2a;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  flex-basis: 220px;
-  appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1.41%200L6%204.58L10.59%200L12%201.41L6%207.41L0%201.41L1.41%200Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    background-color: #0a0a2a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    flex-basis: 220px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1.41%200L6%204.58L10.59%200L12%201.41L6%207.41L0%201.41L1.41%200Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
 }
 
 .containerBusca {
-  position: relative;
-  flex-grow: 1;
+    position: relative;
+    flex-grow: 1;
 }
 
 .campoBuscaFilme {
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 4px;
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  background-color: white;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 2.75rem;
-  color: #333;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 2.75rem;
+    color: #333;
 }
 
 .campoBuscaFilme::placeholder {
-  color: #777;
+    color: #777;
 }
 
 .iconeBusca {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #777;
-  font-size: 1rem;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 1rem;
 }
 
 .containerListagemFilmes {
-  background-color: #F0F0F8;
-  border: 2px solid #C0C0E0;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 2rem;
+    background-color: #F0F0F8;
+    border: 2px solid #C0C0E0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 2rem;
 }
 
 .gridFilmes {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-  justify-items: center; 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
 }
 
 .mensagemNenhumFilme {
-  color: #333;
-  text-align: center;
-  font-size: 1.2rem;
-  padding: 3rem 0;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 3rem 0;
 }
 
 .mensagemCarregando {
-  color: #333;
-  text-align: center;
-  font-size: 1.2rem;
-  padding: 3rem 0;
-  font-weight: bold;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 3rem 0;
+    font-weight: bold;
 }
 
 .mensagemErro {
-  color: #D8000C;
-  background-color: #FFD2D2;
-  border: 1px solid #D8000C;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 1.1rem;
-  padding: 1rem;
-  font-weight: bold;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    border: 1px solid #D8000C;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 1rem;
+    font-weight: bold;
 }

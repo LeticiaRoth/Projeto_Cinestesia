@@ -1,0 +1,7 @@
+USUÁRIO COMUM:
+Email: leticiaroth1@email.com
+Senha: amora
+
+ADMINISTRADOR:
+Email: laysllaeduarda@email.com
+Senha: senha123

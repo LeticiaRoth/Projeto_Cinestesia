@@ -1,38 +1,38 @@
 .cardFilme {
-  background-color: #1a1a3a;
-  border-radius: 8px;
-  overflow: hidden;
-  color: white;
-  width: 90%;
-  max-width: 200px;
-  height: 291px;
-  border: 1px solid #2c2c54;
+    background-color: #1a1a3a;
+    border-radius: 8px;
+    overflow: hidden;
+    color: white;
+    width: 90%;
+    max-width: 200px;
+    height: 291px;
+    border: 1px solid #2c2c54;
 }
 
 .cardPoster {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
 }
 
 .cardInfo {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .cardTitulo {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 0 0 0.5rem 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cardDetalhe {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin: 0.25rem 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

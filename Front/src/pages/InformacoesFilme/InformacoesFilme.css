@@ -1,129 +1,129 @@
 .paginaInfoFilme {
-  background-color: #04041a;
-  padding: 2rem 0 4rem 0;
-  font-family: Arial, sans-serif;
-  color: white;
+    background-color: #04041a;
+    padding: 2rem 0 4rem 0;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
 .containerPaginaInfo {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .botaoVoltarCatalogo {
-  display: inline-block;
-  background-color: white;
-  color: #0a0a2a;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.8rem;
-  margin-bottom: 1.5rem;
+    display: inline-block;
+    background-color: white;
+    color: #0a0a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
 }
 
 .botaoVoltarCatalogo:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 .containerConteudoInfo {
-  background-color: #F0F0F8;
-  border: 2px solid #C0C0E0;
-  border-radius: 8px;
-  padding: 2rem;
-  display: flex;
-  gap: 2rem;
+    background-color: #F0F0F8;
+    border: 2px solid #C0C0E0;
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
 }
 
 .colunaPoster {
-  flex-basis: 30%;
-  flex-shrink: 0;
+    flex-basis: 30%;
+    flex-shrink: 0;
 }
 
 .imagemPoster {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 4px solid white;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 4px solid white;
 }
 
 .colunaDetalhes {
-  flex-basis: 70%;
+    flex-basis: 70%;
 }
 
 .infoBox {
-  background-color: #0a0a2a;
-  border: 2px solid #290616;
-  border-radius: 8px;
-  padding: 2rem 2rem;
-  height: 100%;
+    background-color: #0a0a2a;
+    border: 2px solid #290616;
+    border-radius: 8px;
+    padding: 2rem 2rem;
+    height: 100%;
 }
 
 .infoBoxHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: white;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #3b5998;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #3b5998;
 }
 
 .infoBoxHeader h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: bold;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .infoLista {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0 0;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
 }
 
 .infoItem {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .infoLabel {
-  font-weight: bold;
-  color: #ccc;
-  width: 160px;
-  flex-shrink: 0;
+    font-weight: bold;
+    color: #ccc;
+    width: 160px;
+    flex-shrink: 0;
 }
 
 .infoDado {
-  color: white;
-  line-height: 1.4;
+    color: white;
+    line-height: 1.4;
 }
 
 .infoItem.sinopse {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .infoItem.sinopse .infoLabel {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .infoItem.sinopse p.infoDado {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #ddd;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ddd;
 }
 
 .mensagemInfo {
-  color: #333;
-  text-align: center;
-  font-size: 1.2rem;
-  padding: 4rem 0;
-  background-color: #F0F0F8;
-  border-radius: 8px;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 4rem 0;
+    background-color: #F0F0F8;
+    border-radius: 8px;
 }
 
 .mensagemInfo.erro {
-  color: #D8000C;
-  font-weight: bold;
+    color: #D8000C;
+    font-weight: bold;
 }

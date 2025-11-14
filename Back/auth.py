@@ -17,15 +17,17 @@ def hash_password(password):
     return pwd_hash.hex()
 
 def verify_password(plain_password, password_from_db):
-    return hash_password(plain_password) == password_from_db
+    # Compara o texto puro digitado com o texto puro do banco
+    return plain_password == password_from_db
 
 #Cadastro
 def handle_register(nome, email, password):
     user = db.get_user_by_email(email)
     if user:
         return None 
-    
-    hashed_pass = hash_password(password)
+
+    hashed_pass = password 
+
     tipo_usuario = 'Comum'
     
     new_user_id = db.create_user(nome, email, hashed_pass, tipo_usuario)

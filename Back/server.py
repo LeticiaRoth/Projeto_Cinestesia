@@ -81,6 +81,26 @@ class MyAPIHandler(BaseHTTPRequestHandler):
             self._send_response(404, {'error': 'Endpoint não encontrado'})
 
     def do_POST(self):
+        if self.path == '/logout':
+            auth_header = self.headers.get('Authorization')
+            if auth.handle_logout(auth_header):
+                self._send_response(200, {'message': 'Logout bem-sucedido'})
+            else:
+                self._send_response(400, {'error': 'Token inválido'})
+            return # Termina a execução aqui
+
+        approve_match = re.match(r'/filmes/approve/(\d+)', self.path)
+        if approve_match:
+            user = self._get_auth_user()
+            if not user or user['tipo_usuario'] != 'Administrador':
+                self._send_response(403, {'error': 'Acesso negado'})
+                return
+                
+            filme_id = int(approve_match.group(1))
+            db.approve_filme(filme_id)
+            self._send_response(200, {'message': 'Filme aprovado'})
+            return # Termina a execução aqui
+
         data = self._read_json_body()
         if data is None:
             self._send_response(400, {'error': 'Corpo da requisição inválido'})
@@ -106,13 +126,6 @@ class MyAPIHandler(BaseHTTPRequestHandler):
             except KeyError:
                 self._send_response(400, {'error': 'Campos ausentes: email, password'})
 
-        elif self.path == '/logout':
-            auth_header = self.headers.get('Authorization')
-            if auth.handle_logout(auth_header):
-                self._send_response(200, {'message': 'Logout bem-sucedido'})
-            else:
-                self._send_response(400, {'error': 'Token inválido'})
-
         elif self.path == '/filmes':
             user = self._get_auth_user()
             if not user:
@@ -124,16 +137,6 @@ class MyAPIHandler(BaseHTTPRequestHandler):
                 self._send_response(201, {'id_filme': filme_id, 'status': 'Pendente_Adicao'})
             else:
                 self._send_response(500, {'error': 'Falha ao criar filme'})
-        
-        elif re.match(r'/filmes/approve/(\d+)', self.path):
-            user = self._get_auth_user()
-            if not user or user['tipo_usuario'] != 'Administrador':
-                self._send_response(403, {'error': 'Acesso negado'})
-                return
-                
-            filme_id = int(re.match(r'/filmes/approve/(\d+)', self.path).group(1))
-            db.approve_filme(filme_id)
-            self._send_response(200, {'message': 'Filme aprovado'})
             
         else:
             self._send_response(404, {'error': 'Endpoint não encontrado'})
@@ -156,8 +159,8 @@ class MyAPIHandler(BaseHTTPRequestHandler):
             return
             
         filme_id = int(filme_id_match.group(1))
-        filme = db.get_filme_by_id(filme_id)
         
+        filme = db.get_filme_by_id(filme_id)
         if not filme:
             self._send_response(404, {'error': 'Filme não encontrado'})
             return
@@ -166,7 +169,7 @@ class MyAPIHandler(BaseHTTPRequestHandler):
             db.update_filme_admin(filme_id, data)
             self._send_response(200, {'id_filme': filme_id, 'status': 'Aprovado'})
         
-        elif user['tipo_usuario'] == 'Comum' and filme['id_usuario'] == user['id_usuario']:
+        elif user['tipo_usuario'] == 'Comum' and filme.get('id_usuario') == user['id_usuario']:
             db.update_filme_comum(filme_id, data)
             self._send_response(200, {'id_filme': filme_id, 'status': 'Pendente_Edicao'})
         

@@ -1,116 +1,116 @@
 .paginaLogin {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
- background-image: url('../../assets/imagemLogin.svg'); 
-  background-size: cover;
-  background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-image: url('../../assets/imagemLogin.svg');
+    background-size: cover;
+    background-position: center;
 }
 
 .loginBox {
-  background: radial-gradient(circle, #141774 28%, #0D0F3F 100%);
-  border-radius: 16px;
-  padding: 4rem 3rem;
-  width: 100%;
-  max-width: 590px;
-  color: white;
-  border: 5px solid #040011;
+    background: radial-gradient(circle, #141774 28%, #0D0F3F 100%);
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    width: 100%;
+    max-width: 590px;
+    color: white;
+    border: 5px solid #040011;
 }
 
 .loginBox h1 {
-  text-align: center;
-  margin: 0 0 2rem 0;
-  font-size: 3rem;
-  font-weight: bold;
+    text-align: center;
+    margin: 0 0 2rem 0;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 .inputGrupo {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .inputGrupo label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  font-size:10px;
-  color: #ffffff;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 10px;
+    color: #271616;
 }
 
 .inputContainer {
-  position: relative;
+    position: relative;
 }
 
 .inputContainer svg {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #777;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
 }
 
 .inputContainer input {
-  width: 100%;
-  padding: 2rem  3rem;
-  border: none;
-  border-radius: 4px;
-  background: white;
-  font-family: Arial, sans-serif;
-  font-size: 2rem;
-  color: #fff8f8;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 2rem 3rem;
+    border: none;
+    border-radius: 4px;
+    background: white;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    color: #757575;
+    box-sizing: border-box;
 }
 
 .inputContainer input::placeholder {
-  color: #777;
+    color: #777;
 }
 
 .botaoEntrar {
-  width: 100%;
-  padding: 1rem;
-  background-color: #AECBFA;
-  border: none;
-  border-radius: 4px;
-  color: #0a0a2a;
-  font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: #AECBFA;
+    border: none;
+    border-radius: 4px;
+    color: #0a0a2a;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
 .botaoEntrar:hover {
-  background-color: #c8d8fa;
+    background-color: #c8d8fa;
 }
 
 .botaoEntrar:disabled {
-  background-color: #999;
-  cursor: not-allowed;
+    background-color: #999;
+    cursor: not-allowed;
 }
 
 .linkCadastro {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
 }
 
 .linkCadastro a {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .linkCadastro a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .mensagemErroLogin {
-  color: #FA8072;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+    color: #FA8072;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }

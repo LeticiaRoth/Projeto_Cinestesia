@@ -52,6 +52,24 @@ class _DatabaseConnection:
 
 db_instance = _DatabaseConnection()
 
+def get_or_create_id(table_name, name):
+    """
+    Função auxiliar para encontrar o ID de um nome em uma tabela (ator, diretor, produtora).
+    Se não existir, cria um novo registro e retorna o novo ID.
+    """
+    if not name or not name.strip():
+        return None
+
+    query_find = f"SELECT id_{table_name} FROM {table_name} WHERE nome = %s"
+    result = db_instance.fetch_one(query_find, (name,))
+    
+    if result:
+        return result[f'id_{table_name}']
+    
+    query_create = f"INSERT INTO {table_name} (nome) VALUES (%s)"
+    new_id = db_instance.execute_query(query_create, (name,))
+    return new_id
+
 def get_user_by_email(email):
     query = "SELECT * FROM usuario WHERE email = %s"
     return db_instance.fetch_one(query, (email,))
@@ -123,14 +141,19 @@ def get_pending_filmes():
     """
     return db_instance.fetch_all(query)
 
+
 def create_filme(data, user_id):
+    produtora_id = get_or_create_id('produtora', data.get('produtora_nome'))
+    ator_id = get_or_create_id('ator', data.get('ator_nome'))
+    diretor_id = get_or_create_id('diretor', data.get('diretor_nome'))
+
     query_filme = """
     INSERT INTO filme (titulo, ano, sinopse, poster, id_produtora, id_usuario, status_aprovacao) 
     VALUES (%s, %s, %s, %s, %s, %s, 'Pendente_Adicao')
     """
     filme_params = (
         data['titulo'], data['ano'], data['sinopse'], 
-        data['poster'], data.get('id_produtora'), user_id
+        data['poster'], produtora_id, user_id
     )
     filme_id = db_instance.execute_query(query_filme, filme_params)
     
@@ -140,14 +163,14 @@ def create_filme(data, user_id):
     if 'generos' in data:
         for gen_id in data['generos']:
             db_instance.execute_query("INSERT INTO filme_genero (id_filme, id_genero) VALUES (%s, %s)", (filme_id, gen_id))
-    if 'atores' in data:
-        for ator_id in data['atores']:
-            db_instance.execute_query("INSERT INTO filme_ator (id_filme, id_ator) VALUES (%s, %s)", (filme_id, ator_id))
-    if 'diretores' in data:
-        for dir_id in data['diretores']:
-            db_instance.execute_query("INSERT INTO filme_diretor (id_filme, id_diretor) VALUES (%s, %s)", (filme_id, dir_id))
+    
+    if ator_id:
+        db_instance.execute_query("INSERT INTO filme_ator (id_filme, id_ator) VALUES (%s, %s)", (filme_id, ator_id))
+    if diretor_id:
+        db_instance.execute_query("INSERT INTO filme_diretor (id_filme, id_diretor) VALUES (%s, %s)", (filme_id, diretor_id))
             
     return filme_id
+
 
 def update_filme_admin(filme_id, data):
     query = "UPDATE filme SET titulo = %s, ano = %s, sinopse = %s, poster = %s, id_produtora = %s, status_aprovacao = 'Aprovado' WHERE id_filme = %s"

@@ -1,16 +1,16 @@
 .botaoVerDetalhes {
-  display: block;
-  padding: 0.75rem;
-  background-color: #FFFFFF;
-  color: #1a1a3a;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 1rem;
-  border: 1px solid #C0C0E0;
+    display: block;
+    padding: 0.75rem;
+    background-color: #FFFFFF;
+    color: #1a1a3a;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    border: 1px solid #C0C0E0;
 }
 
 .botaoVerDetalhes:hover {
-  background-color: #f0f0f8;
+    background-color: #f0f0f8;
 }

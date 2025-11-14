@@ -1,99 +1,174 @@
-import React, { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import BotoesAprovacao from '../../components/BotoesAprovacao/BotoesAprovacao.jsx';
 import './AdminHome.css';
 
 const DADOS_CARROSSEL = [
-  { id: 1, url: 'https://wallpapers.com/images/featured/avengers-endgame-mghdp4gaqzu4q4us.jpg', alt: 'Banner Vingadores' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2070&auto=format&fit=crop', alt: 'Banner Filmes 2' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop', alt: 'Banner Filmes 3' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1627843563095-f6e9467c6c28?q=80&w=1974&auto=format&fit=crop', alt: 'Banner Filmes 4' },
+    { id: 1, url: 'https://wallpapers.com/images/featured/avengers-endgame-mghdp4gaqzu4q4us.jpg', alt: 'Banner Vingadores' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2070&auto=format&fit=crop', alt: 'Banner Filmes 2' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2070&auto=format&fit=crop', alt: 'Banner Filmes 3' },
+    { id: 4, url: 'https://images.unsplash.com/photo-1627843563095-f6e9467c6c28?q=80&w=1974&auto=format&fit=crop', alt: 'Banner Filmes 4' },
 ];
 
-const DADOS_MOCADOS = [
-  { id: 1, titulo: 'Marte Precisa de Mães', diretor: 'Simon Wells', elenco: 'Seth Green', ano: 2011, genero: 'Aventura', poster: 'https://m.media-amazon.com/images/M/MV5BMTcwODI3MzE3MF5BMl5BanBnXkFtZTcwNzcyNzc5NA@@._V1_FMjpg_UX1000_.jpg' },
-  { id: 2, titulo: 'Filme Exemplo 2', diretor: 'Diretor Famoso', elenco: 'Ator A', ano: 2020, genero: 'Ação', poster: 'https://placehold.co/200x280/0B0B2B/FFFFFF?text=Poster2' },
-  { id: 3, titulo: 'Filme Exemplo 3', diretor: 'Diretor Famoso', elenco: 'Ator A', ano: 2020, genero: 'Comédia', poster: 'https://placehold.co/200x280/0B0B2B/FFFFFF?text=Poster3' },
-  { id: 4, titulo: 'Filme Exemplo 4', diretor: 'Diretor Famoso', elenco: 'Ator A', ano: 2021, genero: 'Drama', poster: 'https://placehold.co/200x280/0B0B2B/FFFFFF?text=Poster4' },
-  { id: 5, titulo: 'Filme Exemplo 5', diretor: 'Diretor Famoso', elenco: 'Ator A', ano: 2022, genero: 'Aventura', poster: 'https://placehold.co/200x280/0B0B2B/FFFFFF?text=Poster5' },
-  { id: 6, titulo: 'Filme Exemplo 6', diretor: 'Diretor Famoso', elenco: 'Ator A', ano: 2022, genero: 'Ação', poster: 'https://placehold.co/200x280/0B0B2B/FFFFFF?text=Poster6' },
-];
+function CardPedido({ filme, token, onFilmeProcessado }) {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
+    const handleAprovar = async () => {
+        if (!window.confirm(`Aprovar o filme: "${filme.titulo}"?`)) return;
 
-function SecaoFilmes({ titulo, filmes }) {
-  return (
-    <section className="secaoFilmes">
-      <h2>{titulo}</h2>
-      <div className="listaFilmes">
-        {filmes.map(filme => (
-          <div key={filme.id} className="filmeCard">
-            <img 
-              src={filme.poster} 
-              alt={`Poster de ${filme.titulo}`} 
-              onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/200x280/FF0000/FFFFFF?text=Erro+na+Imagem'; }}
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`http://localhost:8000/filmes/approve/${filme.id_filme}`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Falha ao aprovar o filme.');
+            alert('Filme aprovado com sucesso!');
+            onFilmeProcessado(filme.id_filme);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleRecusar = async () => {
+        if (!window.confirm(`RECUSAR e DELETAR o filme: "${filme.titulo}"? Esta ação é permanente.`)) return;
+
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`http://localhost:8000/filmes/${filme.id_filme}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Falha ao recusar/deletar o filme.');
+            alert('Filme recusado e deletado com sucesso.');
+            onFilmeProcessado(filme.id_filme);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="cardPedidoItem">
+            <h4>{filme.titulo} ({filme.ano})</h4>
+            <p>Status: <strong>{filme.status_aprovacao}</strong></p>
+            {error && <p className="mensagemErro">{error}</p>}
+            <BotoesAprovacao
+                onAceitar={handleAprovar}
+                onRecusar={handleRecusar}
+                isDisabled={loading}
             />
-            <h3>{filme.titulo}</h3>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+        </div>
+    );
 }
 
-
+/* Página Inicial do Administrador */
 function AdminHome() {
-  const [vencedores, setVencedores] = useState([]);
-  const [indicados, setIndicados] = useState([]);
-  const [slideAtual, setSlideAtual] = useState(0);
+    const [pedidos, setPedidos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const { user } = useAuth();
 
-  useEffect(() => {
-    setVencedores(DADOS_MOCADOS.slice(0, 5));
-    setIndicados(DADOS_MOCADOS.slice(1, 6));
-  }, []);
+    const [slideAtual, setSlideAtual] = useState(0);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const proximoSlide = (slideAtual + 1) % DADOS_CARROSSEL.length;
-      setSlideAtual(proximoSlide);
-    }, 5000); 
+    useEffect(() => {
+        if (user.token) {
+            const buscarPedidos = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const response = await fetch('http://localhost:8000/filmes/pending', {
+                        headers: {
+                            'Authorization': `Bearer ${user.token}`
+                        }
+                    });
+                    if (response.status === 403) throw new Error('Acesso negado.');
+                    if (!response.ok) throw new Error('Falha ao buscar pedidos pendentes.');
 
-    return () => clearTimeout(timer); 
-  }, [slideAtual]); 
+                    const data = await response.json();
+                    setPedidos(data);
+                } catch (err) {
+                    setError(err.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            buscarPedidos();
+        }
+    }, [user.token]);
 
-  // Função para navegar pelos pontos
-  const irParaSlide = (index) => {
-    setSlideAtual(index);
-  };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const proximoSlide = (slideAtual + 1) % DADOS_CARROSSEL.length;
+            setSlideAtual(proximoSlide);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [slideAtual]);
 
-  return (
-    <div className="paginaHome">
-      <section className="secaoHero">
-        <div className="containerSlides">
-          {DADOS_CARROSSEL.map((slide, index) => (
-            <img
-              key={slide.id}
-              src={slide.url}
-              alt={slide.alt}
-              className={`slideImagem ${index === slideAtual ? 'ativo' : ''}`}
-            />
-          ))}
+    const irParaSlide = (index) => setSlideAtual(index);
+
+    const handleFilmeProcessado = (idFilmeProcessado) => {
+        setPedidos(pedidosAtuais =>
+            pedidosAtuais.filter(filme => filme.id_filme !== idFilmeProcessado)
+        );
+    };
+
+    const renderizarPedidos = () => {
+        if (loading) return <p className="mensagemCarregando">Carregando pedidos...</p>;
+        if (error) return <p className="mensagemErro">{error}</p>;
+        if (pedidos.length === 0) {
+            return <p>Nenhum filme pendente de aprovação. Ótimo trabalho!</p>;
+        }
+        return (
+            <div className="listaPedidos">
+                {pedidos.map(filme => (
+                    <CardPedido
+                        key={filme.id_filme}
+                        filme={filme}
+                        token={user.token}
+                        onFilmeProcessado={handleFilmeProcessado}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+    return (
+        <div className="paginaHome">
+            <section className="secaoHero">
+                <div className="containerSlides">
+                    {DADOS_CARROSSEL.map((slide, index) => (
+                        <img
+                            key={slide.id}
+                            src={slide.url}
+                            alt={slide.alt}
+                            className={`slideImagem ${index === slideAtual ? 'ativo' : ''}`}
+                        />
+                    ))}
+                </div>
+                <div className="pontosCarrossel">
+                    {DADOS_CARROSSEL.map((_, index) => (
+                        <div
+                            key={index}
+                            className={`ponto ${index === slideAtual ? 'ativo' : ''}`}
+                            onClick={() => irParaSlide(index)}
+                        ></div>
+                    ))}
+                </div>
+            </section>
+
+            <section className="secaoPedidosAdmin">
+                <h2>Filmes Pendentes de Aprovação</h2>
+                {renderizarPedidos()}
+            </section>
         </div>
-
-        <div className="pontosCarrossel">
-          {DADOS_CARROSSEL.map((_, index) => (
-            <div
-              key={index}
-              className={`ponto ${index === slideAtual ? 'ativo' : ''}`}
-              onClick={() => irParaSlide(index)}
-            ></div>
-          ))}
-        </div>
-      </section>
-
-    
-      <SecaoFilmes titulo="Vencedores de bilheteria 2025" filmes={vencedores} />
-      <SecaoFilmes titulo="Indicados ao Oscar 2026" filmes={indicados} />
-      
-    </div>
-  );
+    );
 }
 
 export default AdminHome;

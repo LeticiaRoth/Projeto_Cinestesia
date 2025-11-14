@@ -1,5 +1,4 @@
-import React from 'react';
-import './BotoesAprovacao.css'; 
+import './BotoesAprovacao.css';
 
 /**
  * 
@@ -8,25 +7,18 @@ import './BotoesAprovacao.css';
  * @param {function} props.onRecusar  
  * @param {boolean} props.isDisabled 
  */
+
 function BotoesAprovacao({ onAceitar, onRecusar, isDisabled }) {
-  return (
-    <div className="botoesContainer">
-      <button 
-        className="botao aprovacao aceitar" 
-        onClick={onAceitar}
-        disabled={isDisabled}
-      >
-        {isDisabled ? 'Processando...' : 'ACEITAR'}
-      </button>
-      <button 
-        className="botao aprovacao recusar" 
-        onClick={onRecusar}
-        disabled={isDisabled} 
-      >
-        RECUSAR
-      </button>
-    </div>
-  );
+    return (
+        <div className="botoesContainer">
+            <button className="botao aprovacao aceitar" onClick={onAceitar} disabled={isDisabled}>
+                {isDisabled ? 'Processando...' : 'ACEITAR'}
+            </button>
+            <button className="botao aprovacao recusar" onClick={onRecusar} disabled={isDisabled}>
+                RECUSAR
+            </button>
+        </div>
+    );
 }
 
 export default BotoesAprovacao;
